@@ -18,6 +18,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 connectDB(DATABASE_URL)
 
 app.use('/api/user', user_routes)
+// app.use('/api/audio', user_routes)
 
 app.use('/', async (req, res) => {
     res.json({ message: 'API is running' });

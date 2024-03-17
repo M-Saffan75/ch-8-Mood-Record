@@ -134,5 +134,38 @@ const User_Profile = async (req, res) => {
 };
 
 
+/* Update Api Start Here */
 
-module.exports = { Register_Here, Login_Here, Current_User, User_Profile }
+/* http://localhost:5000/api/user/update/user */
+
+
+const Update_User = async (req, res) => {
+    try {
+        const { name, email } = req.body;
+
+        if (!name || !email) {
+            return res.status(401).json({ status: "failed", message: "All Fields Are Required" });
+        }
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user._id,
+            { $set: { name: name, email: email } },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ status: "failed", message: "User not found" });
+        }
+
+        return res.status(200).json({
+            status: "success",
+            code: 200,
+            message: "User Profile Updated Successfully",
+            user: updatedUser
+        });
+    } catch (error) {
+        // console.error(error);
+        return res.status(500).json({ status: "error", message: "Internal Server Error" });
+    }
+};
+
+module.exports = { Register_Here, Login_Here, Current_User, User_Profile, Update_User }
