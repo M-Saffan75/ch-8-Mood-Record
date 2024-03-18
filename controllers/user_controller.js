@@ -18,7 +18,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
 // Register api
 
 const Register_Here = async (req, res) => {
