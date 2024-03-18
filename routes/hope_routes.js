@@ -1,21 +1,25 @@
 const express = require('express');
-const router = express.Router();
+const Router = express;
 const { Valid_User } = require('../middleware/auth_middleware');
-const { Recording_hopeful } = require('../controllers/moods_controller');
+const { Recording_hopeful, Fetch_hope, Remove_hope } = require('../controllers/hope_controller');
 
+
+const hoperouter = Router()
 
 /* user Private Routes start Here */
 
-router.use('/update/profile', Valid_User);
+hoperouter.use('/create/hope', Valid_User);
 
 /* user Private Routes End Here */
 
 
 /* user Public Routes start Here */
 
-router.post('/login', Recording_hopeful);
+hoperouter.post('/create/hope', Recording_hopeful);
+hoperouter.get('/fetch/hope', Fetch_hope);
+hoperouter.post('/remove/hope/:id', Remove_hope);
 
 /* user Public Routes End Here */
 
 
-module.exports = router;
+module.exports = hoperouter;
