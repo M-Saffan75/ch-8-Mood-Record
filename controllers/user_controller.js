@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/user.js');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
+const User = require('../models/user.js');
+const jwt = require('jsonwebtoken');
 dotenv.config();
 
 
@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
 
 
 // Register api
@@ -91,7 +90,9 @@ const Login_Here = async (req, res) => {
     }
 };
 
+
 // Curretn User Api
+
 
 const Current_User = async (req, res) => {
     try {
