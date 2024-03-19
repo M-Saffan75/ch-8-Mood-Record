@@ -1,4 +1,4 @@
-const Hopeful = require('../models/hopeful.js');
+const GrateFul = require('../models/grateful.js');
 const multer = require('multer');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -8,14 +8,14 @@ dotenv.config();
 
 const AudioStorage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './records/hope/audio');
+        cb(null, './records/grateful/audio');
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
-const HopefulAudio = multer({
+const GratefulAudio = multer({
     storage: AudioStorage,
     fileFilter: function (req, file, cb) {
         if (file.mimetype.startsWith('audio/mpeg')) {
@@ -29,11 +29,11 @@ const HopefulAudio = multer({
 
 /* <><><><><>----------------------<><><><><> */
 
-/* create Hopefull */
+/* create ReflectFul */
 
-const Recording_hopeful = async (req, res) => {
+const Recording_grateful = async (req, res) => {
     try {
-        HopefulAudio.single('hopeful')(req, res, async function (err) {
+        GratefulAudio.single('grateful')(req, res, async function (err) {
             if (err) {
                 return res.status(400).json({ message: 'File upload failed.', status: 'failed' });
             }
@@ -42,13 +42,13 @@ const Recording_hopeful = async (req, res) => {
                 return res.status(402).json({ message: 'All Fields and Image Are Required', status: 'failed' });
             }
 
-            const hope = await Hopeful({
+            const grate = await GrateFul({
                 user_id: req.user._id,
-                hopeful: req.file.filename
+                gratetful: req.file.filename
             });
 
-            await hope.save();
-            res.status(200).json({ message: 'Workout Create successfully', hopeful: hope, code: 200 });
+            await reflect.save();
+            res.status(200).json({ message: 'Reflect Create successfully', gratetful: grate, code: 200 });
         });
     } catch (error) {
         console.error(error);
@@ -57,18 +57,18 @@ const Recording_hopeful = async (req, res) => {
 };
 
 
-/* All Hopefull */
+/* All grateful */
 
-const Fetch_hope = async (req, res) => {
+const Fetch_grateful = async (req, res) => {
     try {
         const userId = req.user.id;
-        const hope = await Hopeful.find({ user_id: userId });
+        const grate = await GrateFul.find({ user_id: userId });
 
-        if (!hope || hope.length === 0) {
-            return res.status(404).json({ message: 'Hope not found for this user.' });
+        if (!grate || grate.length === 0) {
+            return res.status(404).json({ message: 'GrateFul not found for this user.' });
         }
 
-        res.status(200).json({ message: 'Hope Retrieved successfully', hope: hope });
+        res.status(200).json({ message: 'GrateFul Retrieved successfully', grateful: grate });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
@@ -76,16 +76,16 @@ const Fetch_hope = async (req, res) => {
 };
 
 
-/* Delete Hopefull */
+/* Delete grateful */
 
-const Remove_hope = async (req, res) => {
+const Remove_grateful = async (req, res) => {
     try {
-        const hopeId = await Hopeful.findById(req.params.id);
-        if (!hopeId) {
-            return res.status(200).json({ message: 'Hope not found', code: 401 });
+        const grateId = await GrateFul.findById(req.params.id);
+        if (!grateId) {
+            return res.status(200).json({ message: 'GrateFul not found', code: 401 });
         }
-        await Hopeful.deleteOne({ _id: req.params.id });
-        return res.status(200).json({ message: 'Hope Successfully Deleted', code: 200 });
+        await GrateFul.deleteOne({ _id: req.params.id });
+        return res.status(200).json({ message: 'GrateFul Successfully Deleted', code: 200 });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal Server Error', error: error.message });
@@ -94,4 +94,4 @@ const Remove_hope = async (req, res) => {
 
 
 
-module.exports = { Recording_hopeful, Remove_hope, Fetch_hope }
+module.exports = { Recording_grateful, Remove_grateful, Fetch_grateful }

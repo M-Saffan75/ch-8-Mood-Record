@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const connectDB = require('./config/connectdb');
 const user_routes = require('./routes/user_routes');
 const hope_routes = require('./routes/hope_routes');
+const reflect_routes = require('./routes/reflect_routes');
 const app = express();
 dotenv.config();
 
@@ -22,6 +23,7 @@ connectDB(DATABASE_URL)
 
 app.use('/api/user', user_routes)
 app.use('/api/audio', hope_routes)
+app.use('/api/audio', reflect_routes)
 
 
 app.use('/', async (req, res) => {
