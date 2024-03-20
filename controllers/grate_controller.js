@@ -29,7 +29,7 @@ const GratefulAudio = multer({
 
 /* <><><><><>----------------------<><><><><> */
 
-/* create ReflectFul */
+/* create Grate */
 
 const Recording_grateful = async (req, res) => {
     try {
@@ -47,8 +47,8 @@ const Recording_grateful = async (req, res) => {
                 gratetful: req.file.filename
             });
 
-            await reflect.save();
-            res.status(200).json({ message: 'Reflect Create successfully', gratetful: grate, code: 200 });
+            await grate.save();
+            res.status(200).json({ message: 'Grate Create successfully', gratetful: grate, code: 200 });
         });
     } catch (error) {
         console.error(error);
