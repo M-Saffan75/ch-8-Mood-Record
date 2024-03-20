@@ -48,7 +48,7 @@ const Recording_grateful = async (req, res) => {
             });
 
             await grate.save();
-            res.status(200).json({ message: 'Grate Create successfully', gratetful: grate, code: 200 });
+            res.status(200).json({ message: 'Grate Create successfully', gratetful: grate, code: 200, status: "success" });
         });
     } catch (error) {
         console.error(error);
@@ -65,13 +65,13 @@ const Fetch_grateful = async (req, res) => {
         const grate = await GrateFul.find({ user_id: userId });
 
         if (!grate || grate.length === 0) {
-            return res.status(404).json({ message: 'GrateFul not found for this user.' });
+            return res.status(404).json({ message: 'GrateFul not found for this user.',status: "failed" });
         }
 
-        res.status(200).json({ message: 'GrateFul Retrieved successfully', grateful: grate });
+        res.status(200).json({ message: 'GrateFul Retrieved successfully', grateful: grate, code: 200,status: "success" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        res.status(500).json({ message: 'Internal Server Error', error: error.message , status: "failed"});
     }
 };
 
@@ -82,13 +82,13 @@ const Remove_grateful = async (req, res) => {
     try {
         const grateId = await GrateFul.findById(req.params.id);
         if (!grateId) {
-            return res.status(200).json({ message: 'GrateFul not found', code: 401 });
+            return res.status(200).json({ message: 'GrateFul not found', code: 401, status: "failed" });
         }
         await GrateFul.deleteOne({ _id: req.params.id });
-        return res.status(200).json({ message: 'GrateFul Successfully Deleted', code: 200 });
+        return res.status(200).json({ message: 'GrateFul Successfully Deleted', code: 200 ,status: "success"});
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        return res.status(500).json({ message: 'Internal Server Error', error: error.message,status: "failed" });
     }
 };
 

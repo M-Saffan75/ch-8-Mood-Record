@@ -48,7 +48,7 @@ const Recording_reflectful = async (req, res) => {
             });
 
             await reflect.save();
-            res.status(200).json({ message: 'Reflect Create successfully', reflectful: reflect, code: 200 });
+            res.status(200).json({ message: 'Reflect Create successfully', reflectful: reflect, code: 200 ,status: "success"});
         });
     } catch (error) {
         console.error(error);
@@ -65,13 +65,13 @@ const Fetch_reflectful = async (req, res) => {
         const reflect = await ReflectFul.find({ user_id: userId });
 
         if (!reflect || reflect.length === 0) {
-            return res.status(404).json({ message: 'Reflect not found for this user.' });
+            return res.status(404).json({ message: 'Reflect not found for this user.' ,status: "failed"});
         }
 
-        res.status(200).json({ message: 'Reflect Retrieved successfully', reflectful: reflect });
+        res.status(200).json({ message: 'Reflect Retrieved successfully', reflectful: reflect, code: 200 ,status: "success"});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        res.status(500).json({ message: 'Internal Server Error', error: error.message ,status: "failed"});
     }
 };
 
@@ -82,13 +82,13 @@ const Remove_reflectful = async (req, res) => {
     try {
         const reflectId = await ReflectFul.findById(req.params.id);
         if (!reflectId) {
-            return res.status(200).json({ message: 'ReflectFul not found', code: 401 });
+            return res.status(200).json({ message: 'ReflectFul not found', code: 401 ,status: "failed"});
         }
         await ReflectFul.deleteOne({ _id: req.params.id });
-        return res.status(200).json({ message: 'ReflectFul Successfully Deleted', code: 200 });
+        return res.status(200).json({ message: 'ReflectFul Successfully Deleted', code: 200,status: "success" });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error', error: error.message });
+        return res.status(500).json({ message: 'Internal Server Error', error: error.message ,status: "failed"});
     }
 };
 

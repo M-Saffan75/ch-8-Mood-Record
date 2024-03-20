@@ -51,7 +51,7 @@ const Register_Here = async (req, res) => {
 
         await user.save();
         const token = jwt.sign({ userID: user._id }, process.env.ACCESS_SECRET_KEY, { expiresIn: '5d' });
-        res.status(200).json({ message: 'User registered successfully', user: user, token: token, code: 200, });
+        res.status(200).json({ message: 'User registered successfully', user: user, token: token, code: 200, status: 'success', });
 
     } catch (error) {
         console.error(error);
@@ -80,7 +80,7 @@ const Login_Here = async (req, res) => {
 
         if (isMatch) {
             const token = jwt.sign({ userID: user._id }, process.env.ACCESS_SECRET_KEY, { expiresIn: "5d" });
-            return res.status(200).json({ status: "success", message: "Login Successfully", user: user, code: 200, token: token });
+            return res.status(200).json({ message: "Login Successfully", user: user, code: 200, token: token, status: "success" });
         } else {
             return res.status(401).json({ status: "failed", message: "Email or Password is Invalid", code: 401 });
         }
@@ -99,12 +99,12 @@ const Current_User = async (req, res) => {
         const currentUser = req.user;
 
         if (!currentUser) {
-            return res.status(404).json({ status: "failed", message: "User Not Found" });
+            return res.status(404).json({ status: "failed", message: "User Not Found" , status: "failed"});
         }
-        return res.status(200).json({ status: "success", data: currentUser });
+        return res.status(200).json({ status: "success", data: currentUser, status: "success", code: 200 });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ status: "error", message: "Internal Server Error" });
+        res.status(500).json({ status: "error", message: "Internal Server Error",status: "failed" });
     }
 };
 
@@ -165,7 +165,7 @@ const Update_User = async (req, res) => {
         });
     } catch (error) {
         // console.error(error);
-        return res.status(500).json({ status: "error", message: "Internal Server Error" });
+        return res.status(500).json({ status: "failed", message: "Internal Server Error" });
     }
 };
 
