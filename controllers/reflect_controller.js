@@ -70,7 +70,7 @@ const Fetch_reflectful = async (req, res) => {
 
         res.status(200).json({ message: 'Reflect Retrieved successfully', reflectful: reflect, code: 200 ,status: "success"});
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message ,status: "failed"});
     }
 };
