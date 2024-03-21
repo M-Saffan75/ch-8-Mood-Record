@@ -99,12 +99,12 @@ const Current_User = async (req, res) => {
         const currentUser = req.user;
 
         if (!currentUser) {
-            return res.status(404).json({ status: "failed", message: "User Not Found" , status: "failed"});
+            return res.status(404).json({ status: "failed", message: "User Not Found", status: "failed" });
         }
         return res.status(200).json({ status: "success", data: currentUser, status: "success", code: 200 });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ status: "error", message: "Internal Server Error",status: "failed" });
+        res.status(500).json({ status: "error", message: "Internal Server Error", status: "failed" });
     }
 };
 
@@ -169,4 +169,32 @@ const Update_User = async (req, res) => {
     }
 };
 
-module.exports = { Register_Here, Login_Here, Current_User, User_Profile, Update_User }
+// change password
+
+
+/* password change Api start Here */
+
+const Password_Change = async (req, resp) => {
+    try {
+        const { password } = req.body;
+
+        if (!password) {
+            return resp.status(403).send({ status: "failed", "message": "All Fields Are Required" });
+        }
+
+        const newhashpassword = await bcrypt.hash(password, 10);
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, { $set: { password: newhashpassword } });
+
+        if (!updatedUser) {
+            return resp.status(500).send({ status: "failed", "message": "Failed to update user password" });
+        }
+
+        resp.status(200).send({ status: "Success", "message": "Password Change Successfully", code: 200 });
+
+    } catch (error) {
+        console.error('Error during password change:', error.message);
+        resp.status(500).send({ "status": "failed", "message": "Internal Server Error" });
+    }
+};
+
+module.exports = { Register_Here, Login_Here, Current_User, User_Profile, Update_User, Password_Change }
