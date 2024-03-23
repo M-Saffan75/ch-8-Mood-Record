@@ -8,8 +8,8 @@ const reflectrouter = Router()
 
 /* user Private Routes start Here */
 
-reflectrouter.use('/create/reflect', Valid_User);
 reflectrouter.use('/fetch/reflect', Valid_User);
+reflectrouter.use('/create/reflect', Valid_User);
 
 /* user Private Routes End Here */
 
