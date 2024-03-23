@@ -16,8 +16,8 @@ reflectrouter.use('/fetch/reflect', Valid_User);
 
 /* user Public Routes start Here */
 
-reflectrouter.post('/create/reflect', Recording_reflectful);
 reflectrouter.get('/fetch/reflect', Fetch_reflectful);
+reflectrouter.post('/create/reflect', Recording_reflectful);
 reflectrouter.post('/remove/reflect/:id', Remove_reflectful);
 
 /* user Public Routes End Here */
