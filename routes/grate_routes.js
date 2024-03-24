@@ -8,8 +8,8 @@ const graterouter = Router()
 
 /* user Private Routes start Here */
 
-graterouter.use('/create/grate', Valid_User);
 graterouter.use('/fetch/grate', Valid_User);
+graterouter.use('/create/grate', Valid_User);
 
 /* user Private Routes End Here */
 
