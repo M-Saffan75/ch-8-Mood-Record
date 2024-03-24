@@ -8,8 +8,8 @@ const hoperouter = Router()
 
 /* user Private Routes start Here */
 
-hoperouter.use('/create/hope', Valid_User);
 hoperouter.use('/fetch/hope', Valid_User);
+hoperouter.use('/create/hope', Valid_User);
 
 /* user Private Routes End Here */
 
