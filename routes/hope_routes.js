@@ -16,8 +16,8 @@ hoperouter.use('/fetch/hope', Valid_User);
 
 /* user Public Routes start Here */
 
-hoperouter.post('/create/hope', Recording_hopeful);
 hoperouter.get('/fetch/hope', Fetch_hope);
+hoperouter.post('/create/hope', Recording_hopeful);
 hoperouter.post('/remove/hope/:id', Remove_hope);
 
 /* user Public Routes End Here */
