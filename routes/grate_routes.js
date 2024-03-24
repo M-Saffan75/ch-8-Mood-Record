@@ -16,8 +16,8 @@ graterouter.use('/fetch/grate', Valid_User);
 
 /* user Public Routes start Here */
 
-graterouter.post('/create/grate', Recording_grateful);
 graterouter.get('/fetch/grate', Fetch_grateful);
+graterouter.post('/create/grate', Recording_grateful);
 graterouter.post('/remove/grate/:id', Remove_grateful);
 
 /* user Public Routes End Here */
