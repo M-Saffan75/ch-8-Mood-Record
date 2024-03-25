@@ -6,9 +6,9 @@ const { Login_Here, Current_User, Register_Here, User_Profile, Update_User, Pass
 
 /* user Private Routes start Here */
 
+router.use('/update/user', Valid_User);
 router.use('/update/profile', Valid_User);
 router.use('/current/user', Valid_User);
-router.use('/update/user', Valid_User);
 router.use('/password/change', Valid_User);
 
 /* user Private Routes End Here */
