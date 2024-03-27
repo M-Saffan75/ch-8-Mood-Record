@@ -41,10 +41,9 @@ const Recording_grateful = async (req, res) => {
             if (!req.file) {
                 return res.status(402).json({ message: 'All Fields and Image Are Required', status: 'failed' });
             }
-
             const grate = await GrateFul({
                 user_id: req.user._id,
-                gratetful: req.file.filename
+                grateful: req.file.filename
             });
 
             await grate.save();
