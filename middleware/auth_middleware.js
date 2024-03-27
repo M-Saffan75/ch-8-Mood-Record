@@ -18,7 +18,7 @@ const Valid_User = (req, res, next) => {
                 next();
             } catch (error) {
                 res.status(401).json({
-                    message: error.message || 'User is not authorized', status:'failed',});
+                    message: error.message || 'User is not authorized', status:'failed'});
             }
         });
     } else {
