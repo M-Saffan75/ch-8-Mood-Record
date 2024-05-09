@@ -95,5 +95,4 @@ const Remove_hope = async (req, res) => {
 };
 
 
-
 module.exports = { Recording_hopeful, Remove_hope, Fetch_hope }
