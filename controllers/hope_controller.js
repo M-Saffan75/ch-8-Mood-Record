@@ -18,10 +18,10 @@ const AudioStorage = multer.diskStorage({
 const HopefulAudio = multer({
     storage: AudioStorage,
     fileFilter: function (req, file, cb) {
-        if (file.mimetype.startsWith('audio/mpeg')) {
+        if (file.mimetype === 'video/3gpp') {
             cb(null, true);
         } else {
-            cb(new Error('Only MP3 audio files are allowed!'), false);
+            cb(new Error('Only audio/3gp files are allowed!'), false);
         }
     }
 });
