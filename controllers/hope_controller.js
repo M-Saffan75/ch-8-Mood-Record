@@ -32,11 +32,12 @@ const HopefulAudio = multer({
 
 /* create Hopefull */
 
+
 const Recording_hopeful = async (req, res) => {
     try {
         HopefulAudio.single('hopeful')(req, res, async function (err) {
             if (err) {
-                return res.status(400).json({ message: 'File upload failed.', status: 'failed' });
+                return res.status(400).json({ message: 'File upload failed.', status: 'failed', error: err.message });
             }
 
             if (!req.file) {
@@ -49,7 +50,7 @@ const Recording_hopeful = async (req, res) => {
             });
 
             await hope.save();
-            res.status(200).json({ message: 'Workout Create successfully', hopeful: hope, code: 200, status: "success" });
+            res.status(200).json({ message: 'Hopeful Create successfully', hopeful: hope, code: 200, status: "success" });
         });
     } catch (error) {
         console.error(error);

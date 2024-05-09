@@ -57,10 +57,6 @@ const Recording_grateful = async (req, res) => {
                 return res.status(402).json({ message: 'File is Required', status: 'failed', });
             }
 
-            // No need to convert audio to MP3 format here, as the file is already uploaded in the correct format
-            // const inputFile = req.file.path;
-            // const outputFile = path.join('./records/grateful/audio', Date.now() + '-' + req.file.filename + '.mp3');
-
             const grate = await GrateFul({
                 user_id: req.user._id,
                 grateful: req.file.filename

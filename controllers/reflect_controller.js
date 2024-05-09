@@ -18,10 +18,10 @@ const AudioStorage = multer.diskStorage({
 const ReflectfulAudio = multer({
     storage: AudioStorage,
     fileFilter: function (req, file, cb) {
-        if (file.mimetype.startsWith('audio/mpeg')) {
+        if (file.mimetype === 'video/3gpp') {
             cb(null, true);
         } else {
-            cb(new Error('Only MP3 audio files are allowed!'), false);
+            cb(new Error('Only audio/3gp files are allowed!'), false);
         }
     }
 });
@@ -48,7 +48,7 @@ const Recording_reflectful = async (req, res) => {
             });
 
             await reflect.save();
-            res.status(200).json({ message: 'Reflect Create successfully', reflectful: reflect, code: 200 ,status: "success"});
+            res.status(200).json({ message: 'Reflect Create successfully', reflectful: reflect, code: 200, status: "success" });
         });
     } catch (error) {
         console.log(error);
@@ -65,13 +65,13 @@ const Fetch_reflectful = async (req, res) => {
         const reflect = await ReflectFul.find({ user_id: userId });
 
         if (!reflect || reflect.length === 0) {
-            return res.status(404).json({ message: 'Reflect not found for this user.' ,status: "failed"});
+            return res.status(404).json({ message: 'Reflect not found for this user.', status: "failed" });
         }
 
-        res.status(200).json({ message: 'Reflect Retrieved successfully', reflectful: reflect, code: 200 ,status: "success"});
+        res.status(200).json({ message: 'Reflect Retrieved successfully', reflectful: reflect, code: 200, status: "success" });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal Server Error', error: error.message ,status: "failed"});
+        res.status(500).json({ message: 'Internal Server Error', error: error.message, status: "failed" });
     }
 };
 
@@ -83,13 +83,13 @@ const Remove_reflectful = async (req, res) => {
     try {
         const reflectId = await ReflectFul.findById(req.params.id);
         if (!reflectId) {
-            return res.status(200).json({ message: 'ReflectFul not found', code: 401 ,status: "failed"});
+            return res.status(200).json({ message: 'ReflectFul not found', code: 401, status: "failed" });
         }
         await ReflectFul.deleteOne({ _id: req.params.id });
-        return res.status(200).json({ message: 'ReflectFul Successfully Deleted', code: 200,status: "success" });
+        return res.status(200).json({ message: 'ReflectFul Successfully Deleted', code: 200, status: "success" });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error', error: error.message ,status: "failed"});
+        return res.status(500).json({ message: 'Internal Server Error', error: error.message, status: "failed" });
     }
 };
 
