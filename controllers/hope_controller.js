@@ -85,7 +85,7 @@ const Remove_hope = async (req, res) => {
     try {
         const hopeId = await Hopeful.findById(req.params.id);
         if (!hopeId) {
-            return res.status(200).json({ message: 'Hope not found', code: 401 });
+            return res.status(200).json({ message: "Hope not found", code: 401 });
         }
         await Hopeful.deleteOne({ _id: req.params.id });
         return res.status(200).json({ message: "Hope Successfully Deleted", code: 200 });
