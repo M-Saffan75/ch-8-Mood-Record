@@ -50,7 +50,7 @@ const Recording_hopeful = async (req, res) => {
             });
 
             await hope.save();
-            res.status(200).json({ message: 'Hopeful Create successfully', hopeful: hope, code: 200, status: "success" });
+            res.status(200).json({ message: "Hopeful Create successfully", hopeful: hope, code: 200, status: "success" });
         });
     } catch (error) {
         console.error(error);
