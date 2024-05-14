@@ -41,7 +41,7 @@ const Recording_hopeful = async (req, res) => {
             }
 
             if (!req.file) {
-                return res.status(402).json({ message: 'All Fields and Image Are Required', status: 'failed' });
+                return res.status(402).json({ message: "All Fields and Image Are Required", status: 'failed' });
             }
 
             const hope = await Hopeful({
