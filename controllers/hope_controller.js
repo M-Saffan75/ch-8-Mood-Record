@@ -21,7 +21,7 @@ const HopefulAudio = multer({
         if (file.mimetype === 'video/3gpp') {
             cb(null, true);
         } else {
-            cb(new Error('Only audio/3gp files are allowed!'), false);
+            cb(new Error("Only audio/3gp files are allowed!"), false);
         }
     }
 });
