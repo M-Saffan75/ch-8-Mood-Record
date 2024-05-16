@@ -63,7 +63,7 @@ const Recording_grateful = async (req, res) => {
             });
 
             await grate.save();
-            res.status(200).json({ message: 'Grate Create successfully', gratetful: grate, code: 200, status: "success" });
+            res.status(200).json({ message: "Grate Create successfully", gratetful: grate, code: 200, status: "success" });
         });
     } catch (error) {
         console.error(error);
