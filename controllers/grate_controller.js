@@ -102,7 +102,7 @@ const Single_grateful = async (req, res) => {
     try {
         const grate = await GrateFul.findById(req.params.id);
         if (!grate || grate.length === 0) {
-            return res.status(201).json({ message: 'Grateful Not Found', gratefull: grate, code: 201 });
+            return res.status(201).json({ message: "Grateful Not Found", gratefull: grate, code: 201 });
         }
 
         return res.status(200).json({ message: 'Grateful Retrived Successfully', gratefull: grate, code: 200 });
