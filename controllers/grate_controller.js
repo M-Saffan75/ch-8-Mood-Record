@@ -83,7 +83,7 @@ const Fetch_grateful = async (req, res) => {
         const grate = await GrateFul.find({ user_id: userId });
 
         if (!grate || grate.length === 0) {
-            return res.status(404).json({ message: 'GrateFul not found for this user.', status: "failed" });
+            return res.status(404).json({ message: "GrateFul not found for this user.", status: "failed" });
         }
 
         res.status(200).json({ message: 'GrateFul Retrieved successfully', grateful: grate, code: 200, status: "success" });
