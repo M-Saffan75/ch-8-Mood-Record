@@ -109,7 +109,7 @@ const Single_grateful = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: 'Internal Server Error', status: 'failed' });
+        return res.status(500).json({ message: "Internal Server Error", status: 'failed' });
     }
 };
 
