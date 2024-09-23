@@ -89,7 +89,7 @@ const Fetch_grateful = async (req, res) => {
         res.status(200).json({ message: 'GrateFul Retrieved successfully', grateful: grate, code: 200, status: "success" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal Server Error', error: error.message, status: "failed" });
+        res.status(500).json({ message: "Internal Server Error", error: error.message, status: "failed" });
     }
 };
 
