@@ -52,7 +52,7 @@ const Recording_reflectful = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Internal Server Error', status: 'failed' });
+        res.status(500).json({ message: "Internal Server Error", status: 'failed' });
     }
 };
 
