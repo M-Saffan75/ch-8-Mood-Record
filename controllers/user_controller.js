@@ -33,7 +33,7 @@ const Register_Here = async (req, res) => {
         }
 
         if (!name || !email || !password) {
-            return res.status(400).json({ message: 'All Fields and Image Are Required', code: 400 });
+            return res.status(400).json({ message: "All Fields and Image Are Required", code: 400 });
         }
 
         const emailExist = await User.findOne({ email });
