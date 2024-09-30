@@ -51,7 +51,7 @@ const Register_Here = async (req, res) => {
 
         await user.save();
         const token = jwt.sign({ userID: user._id }, process.env.ACCESS_SECRET_KEY, { expiresIn: '5d' });
-        res.status(200).json({ message: 'User registered successfully', user: user, token: token, code: 200, status: 'success', });
+        res.status(200).json({ message: "User registered successfully", user: user, token: token, code: 200, status: 'success', });
 
     } catch (error) {
         console.error(error);
