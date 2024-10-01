@@ -125,7 +125,7 @@ const Remove_grateful = async (req, res) => {
             return res.status(200).json({ message: "GrateFul not found", code: 401, status: "failed" });
         }
         await GrateFul.deleteOne({ _id: req.params.id });
-        return res.status(200).json({ message: 'GrateFul Successfully Deleted', code: 200, status: "success" });
+        return res.status(200).json({ message: "GrateFul Successfully Deleted", code: 200, status: "success" });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal Server Error', error: error.message, status: "failed" });
