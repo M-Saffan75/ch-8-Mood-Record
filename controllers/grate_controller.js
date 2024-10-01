@@ -122,7 +122,7 @@ const Remove_grateful = async (req, res) => {
     try {
         const grateId = await GrateFul.findById(req.params.id);
         if (!grateId) {
-            return res.status(200).json({ message: 'GrateFul not found', code: 401, status: "failed" });
+            return res.status(200).json({ message: "GrateFul not found", code: 401, status: "failed" });
         }
         await GrateFul.deleteOne({ _id: req.params.id });
         return res.status(200).json({ message: 'GrateFul Successfully Deleted', code: 200, status: "success" });
