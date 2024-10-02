@@ -123,7 +123,7 @@ const User_Profile = async (req, res) => {
                     { profileImage: req.file.filename },
                     { new: true }
                 );
-                return res.status(200).json({ message: 'Profile uploaded successfully.', code: 200, updatedUser: updatedUser, status: 'success', });
+                return res.status(200).json({ message: "Profile uploaded successfully.", code: 200, updatedUser: updatedUser, status: 'success', });
             } else {
                 return res.status(400).json({ message: 'No file uploaded.', status: "failed", code: 400 });
             }
